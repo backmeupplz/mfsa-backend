@@ -1,5 +1,5 @@
 import env from '@/helpers/env'
-import { Controller, Ctx, Get, Params } from 'amala'
+import { Controller, Get, Params } from 'amala'
 import {
   NeynarAPIClient,
   generateSignature,
