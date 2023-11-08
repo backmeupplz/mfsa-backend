@@ -1,12 +1,19 @@
 import env from '@/helpers/env'
-import { Controller, Get } from 'amala'
+import { Controller, Ctx, Get, Params } from 'amala'
 import {
   NeynarAPIClient,
   generateSignature,
 } from '@standard-crypto/farcaster-js-neynar'
+import UUID from '@/validators/UUID'
 
 @Controller('/uuid')
-export default class LoginController {
+export default class UUIDController {
+  @Get('/status/:uuid')
+  async checkStatus(@Params() { uuid }: UUID) {
+    const client = new NeynarAPIClient(env.API_KEY)
+    return client.v2.fetchSigner(uuid)
+  }
+
   @Get('/')
   async generateUUID() {
     const client = new NeynarAPIClient(env.API_KEY)
